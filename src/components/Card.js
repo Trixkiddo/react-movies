@@ -32,8 +32,17 @@ const Card = ({props}) => {
     return genreArray.map((genre) => <li key={genre}>{genre}</li>); //Clef : chaque genre est unique. Injecte des <li> contenant un genre
   };
 
-  const addStorage = () => {
-    window.localStorage.movies = props.id;
+  //Local storage stocke données dans naviguateur
+  const addStorage = () => { //On check si qqch est présent dans local storage>movies
+    let storedData = window.localStorage.movies ? window.localStorage.movies.split(',') : []; //Si oui, on split avec ',', sinon, on crée le tableau
+
+    //storedData renvoie une string donc il faut passer props.id en string pour les comparer
+    if(!storedData.includes(props.id.toString())) { 
+      storedData.push(props.id) //Ajout au tableau
+      window.localStorage.movies = storedData; //Conservation donnée
+    } else {
+      alert('Ce film est déjà dans ta liste de favoris !');
+    }
   }
 
   return (
