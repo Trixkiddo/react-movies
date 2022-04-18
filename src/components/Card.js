@@ -2,6 +2,7 @@ import React from 'react';
 
 //Les props sont récupérées dans les paramètres de la fonction qui définit notre composant
 const Card = ({props}) => {
+
   const dateFormater = (date) => {
     let [yy, mm, dd] = date.split("-"); //Découpe la date selon le caractère "-"
     return [dd, mm, yy].join("/"); //Ajoute un slash entre les éléments du tableau
@@ -30,6 +31,11 @@ const Card = ({props}) => {
     }
     return genreArray.map((genre) => <li key={genre}>{genre}</li>); //Clef : chaque genre est unique. Injecte des <li> contenant un genre
   };
+
+  const addStorage = () => {
+    alert('BAM !');
+  }
+
   return (
     <div className='card'> {/*Ternaire avec le poster des films */}
       <img src={props.poster_path ?
@@ -44,7 +50,7 @@ const Card = ({props}) => {
       {props.overview ? <p>{props.overview}</p>  : "" } {/* Ternaire synopsis */}
 
 
-      <div className='btn'>Ajouter aux favoris</div>
+      <div className='btn' onClick={() => addStorage() }>Ajouter aux favoris</div> {/* Event ajouter aux favoris */}
     </div>
   );
 };
