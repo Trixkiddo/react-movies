@@ -33,7 +33,7 @@ const Card = ({props}) => {
   };
 
   const addStorage = () => {
-    alert('BAM !');
+    window.localStorage.movies = props.id;
   }
 
   return (
